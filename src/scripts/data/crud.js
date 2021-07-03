@@ -9,11 +9,15 @@ const CRUD = {
     return newTransaction;
   },
   create: (props) => {
+    const { name, value } = props;
+
     transaction.data.push({
       id: generateId(),
-      name: props.name,
-      value: props.value,
+      name: name,
+      value: value,
     });
+
+    return CRUD.get();
   },
   delete: (id) => {
     const data = CRUD.get();
@@ -21,6 +25,8 @@ const CRUD = {
     const newList = data.filter((item) => item.id !== id);
 
     transaction.data = newList;
+
+    return CRUD.get()
   },
 
   getValue: () => {

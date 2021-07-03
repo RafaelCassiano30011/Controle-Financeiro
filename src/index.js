@@ -28,12 +28,12 @@ $form.addEventListener("submit", (e) => {
   const name = $inputName.value;
   const number = $inputnumber.value;
 
-  CRUD.create({
-    name: name,
-    value: parseInt(number),
-  });
-
-  print(CRUD.get());
+  print(
+    CRUD.create({
+      name: name,
+      value: parseInt(number),
+    })
+  );
 
   const balancePositive = CRUD.someValueReceit();
   const balanceNegative = CRUD.someValueExpense();

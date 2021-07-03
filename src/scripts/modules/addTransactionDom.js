@@ -1,5 +1,5 @@
 import CRUD from "../data/crud.js";
-import transaction from "../data/index.js";
+
 import printDisplay from "./displayBalance.js";
 import Element from "./element.js";
 import print from "./printScreen.js";
@@ -34,8 +34,7 @@ const addTrasactionsDom = (props) => {
   });
 
   button.addEventListener("click", () => {
-    CRUD.delete(id);
-    print(CRUD.get());
+    print(CRUD.delete(id));
     const balancePositive = CRUD.someValueReceit();
     const balanceNegative = CRUD.someValueExpense();
     const balance = CRUD.someBalance();
