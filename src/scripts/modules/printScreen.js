@@ -1,14 +1,13 @@
-import CRUD from "../data/crud.js";
-import transaction from "../data/index.js";
-
 import addTrasactionsDom from "./addTransactionDom.js";
 
 const $trasactionsUl = document.querySelector(".transactions");
 
-const print = (props) => {
+const print = async (props) => {
   $trasactionsUl.innerHTML = "";
 
-  props.forEach((item) => {
+  const list = await props;
+
+  list.forEach((item) => {
     addTrasactionsDom(item);
   });
 };

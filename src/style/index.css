@@ -24,7 +24,7 @@ body {
   margin: 30px auto;
   width: 350px;
 }
-h2{
+h2 {
   margin-left: 10px;
 }
 
@@ -97,6 +97,7 @@ input[type="number"] {
   font-weight: 700;
   background-color: #302e2b;
   border: 1px solid #dedede;
+  color: white;
   border-radius: 0px;
   display: block;
   font-size: 16px;
@@ -104,14 +105,16 @@ input[type="number"] {
   width: 100%;
   outline: none;
 }
-input[type="text"],
 input[type="number"]::placeholder {
-  color: rgb(131, 129, 124);
+  color: rgba(255, 255, 255, 0.466);
+}
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.466);
 }
 
 .btn {
   cursor: pointer;
-  background-color:  #302e2b;;
+  background-color: #302e2b;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -127,7 +130,6 @@ input[type="number"]::placeholder {
 .btn:hover {
   transition: all 300ms;
   transform: scale(1.1);
-
 }
 
 .btn:focus,

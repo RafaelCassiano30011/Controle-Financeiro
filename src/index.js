@@ -1,24 +1,29 @@
-import CRUD from "./scripts/data/crud.js";
-import transaction from "./scripts/data/index.js";
+import transaction from "./scripts/data/data.js";
 
 import printDisplay from "./scripts/modules/displayBalance.js";
 import print from "./scripts/modules/printScreen.js";
 
 const $form = document.querySelector(".form");
 
-const balancePositiveInitial = CRUD.someValueReceit();
-const balanceNegativeInitial = CRUD.someValueExpense();
-const balanceInitial = CRUD.someBalance();
+const printAwait = async () => {
+  await print(transaction.read());
+};
 
-print(CRUD.get());
+export const printDisplayAwait = async () => {
+  const balancePositiveInitial = await transaction.someValueReceit();
+  const balanceNegativeInitial = await transaction.someValueExpense();
+  const balanceInitial = await transaction.someBalance();
 
-printDisplay({
-  balancePositive: balancePositiveInitial,
-  balanceNegative: balanceNegativeInitial,
-  balance: balanceInitial,
-});
+  printDisplay({
+    balancePositive: balancePositiveInitial,
+    balanceNegative: balanceNegativeInitial,
+    balance: balanceInitial,
+  });
+};
+printAwait();
+printDisplayAwait();
 
-$form.addEventListener("submit", (e) => {
+$form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const $inputName = document.querySelector(".input-name");
   const $inputnumber = document.querySelector(".input-number");
@@ -28,22 +33,13 @@ $form.addEventListener("submit", (e) => {
   const name = $inputName.value;
   const number = $inputnumber.value;
 
-  print(
-    CRUD.create({
+  await print(
+    transaction.create({
       name: name,
       value: parseInt(number),
     })
   );
-
-  const balancePositive = CRUD.someValueReceit();
-  const balanceNegative = CRUD.someValueExpense();
-  const balance = CRUD.someBalance();
-
-  printDisplay({
-    balancePositive: balancePositive,
-    balanceNegative: balanceNegative,
-    balance: balance,
-  });
+  printDisplayAwait();
 
   $inputName.value = "";
   $inputnumber.value = "";

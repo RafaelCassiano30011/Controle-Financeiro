@@ -1,5 +1,3 @@
-import CRUD from "../data/crud.js";
-
 const $displayExpense = document.getElementById("money-minus");
 const $displayRevenue = document.getElementById("money-plus");
 const $balance = document.getElementById("balance");

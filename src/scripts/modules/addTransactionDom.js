@@ -1,11 +1,12 @@
-import CRUD from "../data/crud.js";
+import { printDisplayAwait } from "../../index.js";
 
-import printDisplay from "./displayBalance.js";
+import transaction from "../data/data.js";
+
 import Element from "./element.js";
 import print from "./printScreen.js";
 
 const addTrasactionsDom = (props) => {
-  const { value, name, id } = props;
+  const { value, name, _id } = props;
 
   if (value === 0) return;
   const operator = props.value < 0 ? "-" : "+";
@@ -30,20 +31,14 @@ const addTrasactionsDom = (props) => {
     type: "li",
     class: [`${cssClass}`],
     text: `${name}`,
-    id: id,
   });
 
-  button.addEventListener("click", () => {
-    print(CRUD.delete(id));
-    const balancePositive = CRUD.someValueReceit();
-    const balanceNegative = CRUD.someValueExpense();
-    const balance = CRUD.someBalance();
+  button.addEventListener("click", async () => {
+    const taskList = await transaction.delete(_id);
 
-    printDisplay({
-      balancePositive: balancePositive,
-      balanceNegative: balanceNegative,
-      balance: balance,
-    });
+    print(taskList);
+
+    printDisplayAwait();
   });
 
   li.append(span, button);
