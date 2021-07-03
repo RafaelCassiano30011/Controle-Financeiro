@@ -5,9 +5,7 @@ import print from "./scripts/modules/printScreen.js";
 
 const $form = document.querySelector(".form");
 
-const printAwait = async () => {
-  await print(transaction.read());
-};
+print(transaction.read());
 
 export const printDisplayAwait = async () => {
   const balancePositiveInitial = await transaction.someValueReceit();
@@ -20,7 +18,7 @@ export const printDisplayAwait = async () => {
     balance: balanceInitial,
   });
 };
-printAwait();
+
 printDisplayAwait();
 
 $form.addEventListener("submit", async (e) => {
